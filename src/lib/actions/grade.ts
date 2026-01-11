@@ -35,7 +35,7 @@ export async function getActivitySubmissionsAction(activityId: string) {
       with: {
         student: true
       },
-      orderBy: (submissions, { desc }) => [desc(submissions.submittedAt)]
+      orderBy: (submissions: any, { desc }: any) => [desc(submissions.submittedAt)]
     });
     return data;
   } catch (error) {

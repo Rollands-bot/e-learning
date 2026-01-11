@@ -24,7 +24,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
   let studentSubmission = null;
   if (isStudent && activity) {
     const studentGrades = await getStudentGradesAction(user.id);
-    studentSubmission = studentGrades.find(g => g.activityId === activity.id);
+    studentSubmission = studentGrades.find((g: { activityId: string }) => g.activityId === activity.id);
   }
 
   if (!activity) return <div className="p-12 text-center font-bold text-gray-400">Aktivitas tidak ditemukan.</div>;

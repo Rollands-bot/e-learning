@@ -46,7 +46,7 @@ export default function AdminCourseManagement() {
       getUsersAction()
     ]);
     setCourses(coursesData);
-    setTeachers(usersData.filter(u => u.role === 'TEACHER'));
+    setTeachers(usersData.filter((u: { role: string }) => u.role === 'TEACHER'));
     setIsLoading(false);
   };
 

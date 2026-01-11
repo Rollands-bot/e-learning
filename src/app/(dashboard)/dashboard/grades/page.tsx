@@ -15,15 +15,15 @@ export default async function GradesPage() {
   const dbGrades = await getStudentGradesAction(user.id);
 
   // Map mata kuliah ke nilai mahasiswa ini
-  const processedGrades = dbCourses.map(course => {
+  const processedGrades = dbCourses.map((course: import('@/types').Course) => {
     // Cari semua nilai untuk kursus ini
-    const courseGrades = dbGrades.filter(g => g.activity?.section?.courseId === course.id);
+    const courseGrades = dbGrades.filter((g: any) => g.activity?.section?.courseId === course.id);
     
     let totalGrade = 0;
     let count = 0;
     let latestFeedback = '';
 
-    courseGrades.forEach(g => {
+    courseGrades.forEach((g: any) => {
       if (g.grade !== null) {
         totalGrade += g.grade;
         count++;
@@ -104,7 +104,7 @@ export default async function GradesPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              {processedGrades.map((item, index) => (
+              {processedGrades.map((item: any, index: number) => (
                 <tr key={index} className="hover:bg-brand-50/30 transition-colors">
                   <td className="px-8 py-6">
                     <div>

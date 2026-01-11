@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   const recentActivities = await getRecentActivitiesAction();
   const allUsers = await getUsersAction();
 
-  const courses = dbCourses.map(c => ({
+  const courses = dbCourses.map((c: import('@/types').Course) => ({
     ...c,
     instructor: (c.instructor as any)?.name || 'Dosen Pengampu',
     sections: c.sections || []
@@ -33,8 +33,8 @@ export default async function DashboardPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { label: 'Total Mahasiswa', value: allUsers.filter(u => u.role === 'STUDENT').length, icon: GraduationCap, color: 'bg-green-50 text-green-600' },
-            { label: 'Total Dosen', value: allUsers.filter(u => u.role === 'TEACHER').length, icon: Users, color: 'bg-brand-50 text-brand-700' },
+            { label: 'Total Mahasiswa', value: allUsers.filter((u: any) => u.role === 'STUDENT').length, icon: GraduationCap, color: 'bg-green-50 text-green-600' },
+            { label: 'Total Dosen', value: allUsers.filter((u: any) => u.role === 'TEACHER').length, icon: Users, color: 'bg-brand-50 text-brand-700' },
             { label: 'Mata Kuliah', value: dbCourses.length, icon: BookOpen, color: 'bg-blue-50 text-blue-600' },
             { label: 'Pengajuan Tugas', value: recentActivities.length, icon: FileCheck, color: 'bg-amber-50 text-amber-600' },
           ].map((stat, i) => (
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
               Aktivitas Pengguna
             </h2>
             <div className="space-y-4">
-              {recentActivities.map((activity) => (
+              {recentActivities.map((activity: any) => (
                 <div key={activity.id} className="flex items-center gap-4 p-2">
                   <div className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 font-black text-xs uppercase">
                     {activity.student?.name?.charAt(0)}
@@ -101,7 +101,7 @@ export default async function DashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.length > 0 ? (
-          courses.map((course) => (
+          courses.map((course: import('@/types').Course) => (
             <CourseCard key={course.id} course={course as any} />
           ))
         ) : (
@@ -118,7 +118,7 @@ export default async function DashboardPage() {
         </h2>
         <div className="space-y-4">
           {recentActivities.length > 0 ? (
-            recentActivities.filter(a => user.role === 'ADMIN' || a.studentId === user.id || a.activity?.section?.course?.instructorId === user.id).map((activity) => (
+            recentActivities.filter((a: any) => user.role === 'ADMIN' || a.studentId === user.id || a.activity?.section?.course?.instructorId === user.id).map((activity: any) => (
               <div key={activity.id} className="flex items-center gap-4 text-sm text-gray-600 pb-4 border-b border-gray-50 last:border-0 hover:bg-gray-50/50 p-2 rounded-xl transition-colors">
                 <div className="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center text-brand-700 font-black text-xs">
                   {activity.student?.name?.charAt(0)}

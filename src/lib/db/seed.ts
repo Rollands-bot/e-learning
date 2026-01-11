@@ -27,7 +27,7 @@ async function main() {
   // 3. Seed Courses, Sections, and Activities
   console.log('📚 Seeding courses & activities...');
   const allUsers = await db.query.users.findMany();
-  const teacher = allUsers.find(u => u.role === 'TEACHER');
+  const teacher = allUsers.find((u: any) => u.role === 'TEACHER');
 
   for (const course of MOCK_COURSES) {
     const [insertedCourse] = await db.insert(schema.courses).values({

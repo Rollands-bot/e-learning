@@ -70,7 +70,7 @@ export default async function CourseDetailPage({ params, searchParams }: PagePro
           </div>
         </div>
 
-        {course.sections.map((section) => (
+        {course.sections.map((section: import('@/types').Section) => (
           <div key={section.id} className="bg-white border border-gray-100 rounded-[3rem] overflow-hidden shadow-sm">
             <div className="bg-gray-50/50 p-8 border-b border-gray-50 flex items-center justify-between group">
               <div>

@@ -11,7 +11,7 @@ export async function getUsersAction(search?: string, role?: string) {
     
     // Filter logic can be added here if needed for more complex queries
     const allUsers = await db.query.users.findMany({
-      orderBy: (users, { desc }) => [desc(users.createdAt)]
+      orderBy: (users: any, { desc }: any) => [desc(users.createdAt)]
     });
 
     return allUsers;
