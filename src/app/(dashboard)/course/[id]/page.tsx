@@ -4,7 +4,8 @@ import { getCookie } from 'cookies-next';
 import { cookies } from 'next/headers';
 import { getCourseDetailAction } from '@/lib/actions/course';
 import { AddSectionButton, AddActivityButton } from '@/components/course/CourseEditor';
-import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{ id: string }>;

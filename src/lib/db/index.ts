@@ -7,9 +7,11 @@ dotenv.config();
 
 const connectionString = process.env.DATABASE_URL;
 
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not defined in .env file');
+// Jangan lempar error jika sedang dalam proses build produksi dan env tidak ada
+if (!connectionString && process.env.NODE_ENV === 'production') {
+  console.warn('⚠️ DATABASE_URL tidak ditemukan. Skip koneksi untuk build.');
 }
 
-export const client = postgres(connectionString, { prepare: false });
-export const db = drizzle(client, { schema });
+// Hanya inisialisasi client jika connectionString ada
+export const client = connectionString ? postgres(connectionString, { prepare: false }) : null;
+export const db = client ? drizzle(client, { schema }) : null as any;

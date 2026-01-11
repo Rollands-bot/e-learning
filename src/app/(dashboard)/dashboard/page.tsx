@@ -5,6 +5,8 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { Users, GraduationCap, BookOpen, FileCheck } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   const cookieStore = await cookies();
   const userCookie = cookieStore.get('user_session');

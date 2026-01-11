@@ -3,6 +3,8 @@ import { getCoursesAction } from '@/lib/actions/course';
 import { cookies } from 'next/headers';
 import { Award, TrendingUp, BookOpen, Clock } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function GradesPage() {
   const cookieStore = await cookies();
   const userCookie = cookieStore.get('user_session');

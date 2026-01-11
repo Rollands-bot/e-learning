@@ -5,6 +5,8 @@ import { getActivityDetailAction } from '@/lib/actions/course';
 import { getStudentGradesAction } from '@/lib/actions/grade';
 import AssignmentSubmitter from '@/components/course/AssignmentSubmitter';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ id: string; activityId: string }>;
 }
