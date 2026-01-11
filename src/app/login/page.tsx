@@ -157,25 +157,6 @@ export default function LoginPage() {
               ) : 'LOGIN'}
             </button>
           </form>
-
-          {/* Simulation Helper */}
-          <div className="mt-8 pt-6 border-t border-dashed border-gray-100">
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest text-center mb-4">Akun Simulasi (Coba Ketik):</p>
-            <div className="grid grid-cols-3 gap-2">
-              <div className="p-2 bg-gray-50 rounded-lg border border-gray-100 text-[10px]">
-                <p className="font-bold text-gray-400 uppercase">Admin</p>
-                <code className="text-brand-700 font-bold select-all">admin</code>
-              </div>
-              <div className="p-2 bg-gray-50 rounded-lg border border-gray-100 text-[10px]">
-                <p className="font-bold text-gray-400 uppercase">Dosen</p>
-                <code className="text-brand-700 font-bold select-all">19850101</code>
-              </div>
-              <div className="p-2 bg-gray-50 rounded-lg border border-gray-100 text-[10px]">
-                <p className="font-bold text-gray-400 uppercase">Mhs</p>
-                <code className="text-brand-700 font-bold select-all">2021001</code>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="mt-8 text-center">
