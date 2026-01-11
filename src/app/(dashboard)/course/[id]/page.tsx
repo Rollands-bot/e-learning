@@ -12,6 +12,8 @@ interface PageProps {
   searchParams: Promise<{ edit?: string }>;
 }
 
+export const runtime = 'edge';
+
 export default async function CourseDetailPage({ params, searchParams }: PageProps) {
   const { id } = await params;
   const { edit } = await searchParams;

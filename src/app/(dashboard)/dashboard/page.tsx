@@ -7,6 +7,8 @@ import { Users, GraduationCap, BookOpen, FileCheck } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
+export const runtime = 'edge';
+
 export default async function DashboardPage() {
   const cookieStore = await cookies();
   const userCookie = cookieStore.get('user_session');

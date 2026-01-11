@@ -5,6 +5,8 @@ import { Award, TrendingUp, BookOpen, Clock } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
+export const runtime = 'edge';
+
 export default async function GradesPage() {
   const cookieStore = await cookies();
   const userCookie = cookieStore.get('user_session');

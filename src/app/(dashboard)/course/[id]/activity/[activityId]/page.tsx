@@ -11,6 +11,8 @@ interface PageProps {
   params: Promise<{ id: string; activityId: string }>;
 }
 
+export const runtime = 'edge';
+
 export default async function ActivityDetailPage({ params }: PageProps) {
   const { id, activityId } = await params;
   const activity = await getActivityDetailAction(activityId);
