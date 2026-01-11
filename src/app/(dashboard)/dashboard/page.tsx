@@ -17,22 +17,20 @@ export default async function DashboardPage() {
   const recentActivities = await getRecentActivitiesAction();
   const allUsers = await getUsersAction();
 
-  // Konversi data DB ke format yang diharapkan komponen UI
   const courses = dbCourses.map(c => ({
     ...c,
-    instructor: c.instructor?.name || 'Unknown Instructor',
+    instructor: (c.instructor as any)?.name || 'Dosen Pengampu',
     sections: c.sections || []
   }));
 
   if (isAdmin) {
     return (
-      <div className="space-y-10">
+      <div className="space-y-10 font-jakarta">
         <div>
           <h1 className="text-3xl font-black text-brand-900 uppercase tracking-tight leading-none mb-2">Sistem Administrasi</h1>
           <p className="text-gray-500 font-medium">Ringkasan operasional sistem LMS UNIPEM hari ini.</p>
         </div>
 
-        {/* Admin Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { label: 'Total Mahasiswa', value: allUsers.filter(u => u.role === 'STUDENT').length, icon: GraduationCap, color: 'bg-green-50 text-green-600' },
@@ -53,7 +51,6 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Recent Submissions (Global) */}
           <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
             <h2 className="font-black text-brand-900 uppercase tracking-tight mb-6 flex items-center gap-2">
               <div className="w-2 h-6 bg-brand-primary rounded-full"></div>
@@ -77,15 +74,14 @@ export default async function DashboardPage() {
             </div>
           </div>
 
-          {/* Quick Actions for Admin */}
           <div className="bg-brand-900 p-8 rounded-[2.5rem] text-white shadow-xl shadow-brand-900/30">
             <h2 className="font-black uppercase tracking-widest text-brand-300 text-sm mb-8">Aksi Cepat Admin</h2>
             <div className="grid grid-cols-2 gap-4">
-              <Link href="/admin/users" className="p-6 bg-white/10 rounded-3xl hover:bg-white/20 transition-all border border-white/5 flex flex-col gap-3 group">
+              <Link href="/admin/users" className="p-6 bg-white/10 rounded-3xl hover:bg-white/20 transition-all border border-white/5 flex flex-col gap-3 group text-left">
                 <Users className="text-brand-300 group-hover:scale-110 transition-transform" />
                 <p className="font-black uppercase tracking-tighter text-xs">Tambah Pengguna</p>
               </Link>
-              <Link href="/admin/courses" className="p-6 bg-white/10 rounded-3xl hover:bg-white/20 transition-all border border-white/5 flex flex-col gap-3 group">
+              <Link href="/admin/courses" className="p-6 bg-white/10 rounded-3xl hover:bg-white/20 transition-all border border-white/5 flex flex-col gap-3 group text-left">
                 <BookOpen className="text-brand-300 group-hover:scale-110 transition-transform" />
                 <p className="font-black uppercase tracking-tighter text-xs">Buat Mata Kuliah</p>
               </Link>
@@ -97,7 +93,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 font-jakarta">
       <div>
         <h1 className="text-3xl font-black text-brand-900 uppercase tracking-tight">Dashboard Saya</h1>
         <p className="text-gray-500 font-medium">Selamat datang kembali di Learning Management System UNIPEM.</p>
@@ -122,7 +118,7 @@ export default async function DashboardPage() {
         </h2>
         <div className="space-y-4">
           {recentActivities.length > 0 ? (
-            recentActivities.map((activity) => (
+            recentActivities.filter(a => user.role === 'ADMIN' || a.studentId === user.id || a.activity?.section?.course?.instructorId === user.id).map((activity) => (
               <div key={activity.id} className="flex items-center gap-4 text-sm text-gray-600 pb-4 border-b border-gray-50 last:border-0 hover:bg-gray-50/50 p-2 rounded-xl transition-colors">
                 <div className="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center text-brand-700 font-black text-xs">
                   {activity.student?.name?.charAt(0)}

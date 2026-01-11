@@ -14,7 +14,6 @@ export default function LoginPage() {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
 
-  // Cek jika ada NPM yang tersimpan saat halaman dimuat
   useEffect(() => {
     const savedUsername = localStorage.getItem('remembered_npm');
     if (savedUsername) {
@@ -31,7 +30,6 @@ export default function LoginPage() {
     const result = await loginAction(username);
 
     if (result.success) {
-      // Jika Ingat Saya dicentang, simpan ke localStorage
       if (rememberMe) {
         localStorage.setItem('remembered_npm', username);
       } else {
@@ -46,12 +44,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-50/30 px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-brand-50/30 px-4 py-12 sm:px-6 lg:px-8 font-jakarta">
       <div className="w-full max-w-sm sm:max-w-md space-y-8">
-        {/* Login Card */}
         <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-xl shadow-brand-900/5 border border-brand-100 relative overflow-hidden">
-          
-          {/* Logo Only Inside Card */}
           <div className="text-center mb-8">
             <div className="relative inline-block group">
               <div className="absolute inset-0 bg-brand-primary/10 rounded-full blur-2xl group-hover:bg-brand-primary/20 transition-colors"></div>
@@ -68,64 +63,40 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-5">
             {error && (
-              <div className="bg-red-50 border border-red-100 text-red-600 p-3 rounded-lg text-xs font-bold flex items-center gap-2 animate-shake">
+              <div className="bg-red-50 border border-red-100 text-red-600 p-3 rounded-lg text-xs font-bold flex items-center gap-2">
                 <AlertCircle size={16} />
                 {error}
               </div>
             )}
 
             <div className="space-y-1.5">
-              <label 
-                className="text-xs font-black uppercase tracking-wider ml-1"
-                style={{ color: '#14532d' }}
-              >
-                NPM / NIP
-              </label>
+              <label className="text-xs font-black uppercase tracking-wider ml-1 text-brand-900">NPM / NIP</label>
               <div className="relative">
-                <User 
-                  className="absolute left-3 top-1/2 -translate-y-1/2" 
-                  style={{ color: '#14532d' }} 
-                  size={18} 
-                />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-600" size={18} style={{ color: '#14532d' }} />
                 <input 
                   type="text" 
-                  placeholder="Masukkan nomor induk..."
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-brand-50/30 border border-brand-100 rounded-xl text-sm focus:ring-2 focus:ring-[#14532d]/20 focus:border-[#14532d] hover:border-[#14532d] active:border-[#14532d] outline-none transition-all placeholder:text-brand-900/30"
+                  placeholder="Masukkan nomor induk..."
+                  className="w-full pl-10 pr-4 py-3 bg-brand-50/30 border border-brand-100 rounded-xl text-sm focus:ring-2 focus:ring-[#14532d]/20 focus:border-[#14532d] outline-none transition-all"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <div className="flex justify-between items-center ml-1">
-                <label 
-                  className="text-xs font-black uppercase tracking-wider"
-                  style={{ color: '#14532d' }}
-                >
-                  Password
-                </label>
-                <a 
-                  href="#" 
-                  style={{ color: '#14532d' }}
-                  className="text-[10px] font-bold hover:underline"
-                >
-                  Lupa Password?
-                </a>
+              <div className="flex justify-between items-center ml-1 text-brand-900">
+                <label className="text-xs font-black uppercase tracking-wider">Password</label>
+                <a href="#" className="text-[10px] font-bold hover:underline" style={{ color: '#14532d' }}>Lupa Password?</a>
               </div>
               <div className="relative">
-                <Lock 
-                  className="absolute left-3 top-1/2 -translate-y-1/2" 
-                  style={{ color: '#14532d' }} 
-                  size={18} 
-                />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-600" size={18} style={{ color: '#14532d' }} />
                 <input 
                   type="password" 
-                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-brand-50/30 border border-brand-100 rounded-xl text-sm focus:ring-2 focus:ring-[#14532d]/20 focus:border-[#14532d] hover:border-[#14532d] active:border-[#14532d] outline-none transition-all placeholder:text-brand-900/30"
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-4 py-3 bg-brand-50/30 border border-brand-100 rounded-xl text-sm focus:ring-2 focus:ring-[#14532d]/20 focus:border-[#14532d] outline-none transition-all"
                   required
                 />
               </div>
@@ -137,7 +108,7 @@ export default function LoginPage() {
                   type="checkbox" 
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-brand-200 text-brand-primary focus:ring-brand-primary/20 cursor-pointer transition-all"
+                  className="w-4 h-4 rounded border-brand-200 text-brand-primary focus:ring-brand-primary/20"
                 />
                 <span className="text-[11px] font-bold text-gray-500 group-hover:text-brand-900 transition-colors">Ingat Saya</span>
               </label>
@@ -147,7 +118,7 @@ export default function LoginPage() {
               type="submit"
               disabled={isLoading}
               style={{ backgroundColor: '#14532d' }}
-              className="w-full text-white font-black py-3.5 rounded-xl shadow-lg shadow-brand-900/20 active:bg-[#0f3d21] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+              className="w-full text-white font-black py-3.5 rounded-xl shadow-lg shadow-brand-900/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
               {isLoading ? (
                 <>
