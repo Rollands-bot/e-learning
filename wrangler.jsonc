@@ -1,4 +1,5 @@
 {
   "name": "e-learning-unipem",
-  "compatibility_date": "2026-01-12"
+  "compatibility_date": "2026-01-12",
+  "pages_build_output_dir": ".vercel/output/static"
 }
