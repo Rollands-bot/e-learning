@@ -1,17 +1,31 @@
 'use client';
 
-import { MOCK_COURSES } from '@/lib/constants/mock-data';
+import { getCoursesAction } from '@/lib/actions/course';
 import CourseCard from '@/components/dashboard/CourseCard';
-import { Search, Filter } from 'lucide-react';
-import { useState } from 'react';
+import { Search, Filter, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+export const dynamic = 'force-dynamic';
 
 export default function MyCoursesPage() {
+  const [courses, setCourses] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredCourses = MOCK_COURSES.filter(course => 
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const data = await getCoursesAction();
+      setCourses(data);
+      setIsLoading(false);
+    };
+    fetchCourses();
+  }, []);
+
+  const filteredCourses = courses.filter(course => 
     course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     course.code.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
 
   return (
     <div>

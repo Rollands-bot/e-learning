@@ -19,6 +19,8 @@ import {
   Loader2
 } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function UserManagementPage() {
   const [users, setUsers] = useState<any[]>([]);
   const [isLoadingData, setIsLoadingData] = useState(true);

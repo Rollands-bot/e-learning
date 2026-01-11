@@ -6,6 +6,8 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import { getCookie } from 'cookies-next';
 import { useState, useEffect } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export default function DashboardLayout({
   children,
 }: {

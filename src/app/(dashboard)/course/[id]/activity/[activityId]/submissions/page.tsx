@@ -6,6 +6,8 @@ import { getActivitySubmissionsAction, updateGradeAction } from '@/lib/actions/g
 import { getActivityDetailAction } from '@/lib/actions/course';
 import { useState, useEffect } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export default function SubmissionsPage() {
   const { id, activityId } = useParams();
   const router = useRouter();
