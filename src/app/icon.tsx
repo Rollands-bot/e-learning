@@ -15,23 +15,18 @@ export default function Icon() {
       <div
         style={{
           fontSize: 24,
-          background: 'white',
+          background: 'linear-gradient(135deg, #14532d 0%, #166534 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '50%',
+          color: 'white',
+          fontWeight: 'bold',
         }}
       >
-        <img
-          src="http://localhost:3000/unipem.png"
-          style={{
-            width: '85%',
-            height: '85%',
-            objectFit: 'contain',
-          }}
-        />
+        U
       </div>
     ),
     // ImageResponse options
