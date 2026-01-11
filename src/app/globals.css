@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+@layer components {
+  .moodle-card {
+    @apply bg-white border border-gray-200 rounded shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .activity-item {
+    @apply flex items-center p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+}
