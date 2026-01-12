@@ -8,10 +8,15 @@
     "start": "next start",
     "lint": "next lint",
     "db:seed": "npx tsx src/lib/db/seed.ts",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "db:push-supabase": "drizzle-kit push --config=supabase-migrate.config.ts",
+    "db:migrate-supabase": "drizzle-kit migrate --config=supabase-migrate.config.ts",
+    "db:generate-supabase": "drizzle-kit generate --config=supabase-migrate.config.ts"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.90.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cookies-next": "^4.1.1",

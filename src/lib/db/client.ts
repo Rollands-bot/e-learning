@@ -1,11 +1,14 @@
 // src/lib/db/client.ts
 // File ini menyediakan antarmuka database yang bisa diganti saat build time
+// Dalam migrasi ke Supabase, kita tetap menyimpan file ini untuk kompatibilitas sementara
+// Nantinya semua operasi database akan menggunakan src/lib/db/supabase-db.ts
+
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 
 // Hanya inisialisasi koneksi jika bukan saat build time atau jika DATABASE_URL tersedia
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL || process.env.SUPABASE_URL;
 
 let dbInstance: any = null;
 
