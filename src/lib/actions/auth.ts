@@ -1,14 +1,12 @@
 'use server';
 
-import { db } from '@/lib/db';
-import { users } from '@/lib/db/schema';
-import { eq } from 'drizzle-orm';
+import { serverDatabase } from '@/lib/db/supabase-db';
 import { cookies } from 'next/headers';
 
 export async function loginAction(username: string) {
   try {
     // 1. Cari user berdasarkan username (NPM/NIP)
-    const [user] = await db.select().from(users).where(eq(users.username, username)).limit(1);
+    const user = await serverDatabase.users.getByUsername(username);
 
     if (!user) {
       return { success: false, message: 'NPM/NIP tidak terdaftar.' };
@@ -31,9 +29,9 @@ export async function loginAction(username: string) {
     });
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Login Error:', error);
-    return { success: false, message: 'Terjadi kesalahan sistem.' };
+    return { success: false, message: `Terjadi kesalahan sistem: ${error.message || 'Unknown error'}` };
   }
 }
 
