@@ -30,6 +30,21 @@
 
   let menu = $derived(MENU[user?.peran] ?? []);
 
+  /**
+   * Inisial untuk avatar, diambil dari nama pengguna.
+   *
+   * Gelar dan singkatan dilewati karena selalu memuat titik — tanpa
+   * penyaringan ini "Dr. Budi Santoso" akan berinisial "DB", bukan "BS".
+   */
+  let inisial = $derived.by(() => {
+    const kata = (user?.nama ?? '')
+      .split(/[\s,]+/)
+      .filter((k) => k && !k.includes('.') && k.length > 1);
+    if (kata.length === 0) return '—';
+    if (kata.length === 1) return kata[0].slice(0, 2).toUpperCase();
+    return (kata[0][0] + kata[1][0]).toUpperCase();
+  });
+
   $effect(() => {
     if (!sesi.masuk()) {
       goto('/login');
@@ -50,7 +65,7 @@
 
 <div class="flex min-h-screen">
   <!-- Bilah samping -->
-  <aside class="hidden w-64 shrink-0 flex-col bg-pinus text-kertas md:flex">
+  <aside class="hidden w-72 shrink-0 flex-col bg-pinus text-kertas md:flex">
     <div class="flex items-center gap-3 border-b border-white/10 px-6 py-6">
       <img
         src="/logo-unipi.png"
@@ -79,15 +94,36 @@
       {/each}
     </nav>
 
-    <div class="border-t border-white/10 px-6 py-5">
-      <div class="truncate text-[14px] font-semibold">{user?.nama ?? '—'}</div>
-      <div class="mt-0.5 truncate text-[12px] text-kertas/50">{user?.email ?? ''}</div>
-      <button
-        onclick={() => sesi.keluar()}
-        class="mt-3.5 text-[12px] font-semibold tracking-wide text-oker uppercase transition-colors hover:text-kertas"
-      >
-        Keluar &rarr;
-      </button>
+    <div class="border-t border-white/10 p-4">
+      <div class="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-3">
+        <div
+          class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-oker
+                 font-serif text-[14px] font-semibold text-kertas"
+          aria-hidden="true"
+        >
+          {inisial}
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <div class="truncate text-[13.5px] font-semibold leading-tight">{user?.nama ?? '—'}</div>
+          <div class="mt-0.5 truncate text-[11.5px] text-kertas/45">{user?.email ?? ''}</div>
+        </div>
+
+        <button
+          onclick={() => sesi.keluar()}
+          title="Keluar dari sistem"
+          aria-label="Keluar dari sistem"
+          class="grid h-8 w-8 shrink-0 place-items-center rounded-md text-kertas/50
+                 transition-colors hover:bg-white/10 hover:text-oker"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" class="h-[18px] w-[18px]">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+        </button>
+      </div>
     </div>
   </aside>
 

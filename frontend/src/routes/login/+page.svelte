@@ -45,7 +45,7 @@
         class="h-20 w-20 shrink-0"
       />
       <div>
-        <div class="text-[11px] font-semibold tracking-[0.28em] text-kertas/50 uppercase">
+        <div class="text-[11px] font-semibold tracking-[0.28em] text-kertas/80 uppercase">
           Universitas Insan Pembangunan Indonesia
         </div>
         <div class="mt-4 h-px w-16 bg-oker"></div>
