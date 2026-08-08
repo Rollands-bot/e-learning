@@ -20,6 +20,9 @@ backend/uploads/pengumpulan/*
 *.docx
 *.pdf
 
+# Konfigurasi perkakas lokal
+.claude/
+
 # OS & editor
 .DS_Store
 .idea/
