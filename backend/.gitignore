@@ -1,0 +1,20 @@
+# Env & secret
+.env
+*.env.local
+
+# Build artifacts
+/bin/
+/tmp/
+*.exe
+
+# Uploads (jangan commit file user)
+/uploads/materi/*
+/uploads/pengumpulan/*
+!/uploads/materi/.gitkeep
+!/uploads/pengumpulan/.gitkeep
+
+# Editor & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

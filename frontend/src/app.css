@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+/* ── Sistem desain ────────────────────────────────────────────────────────
+   Arah visual: editorial akademik. Latar kertas hangat, tipografi serif
+   untuk judul, hijau pinus sebagai warna institusi, dan oker sebagai aksen.
+   Kontras dijaga tinggi agar tetap terbaca ketika dicetak/di-screenshot
+   ke dalam dokumen skripsi.
+   ────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-kertas: #faf8f3;
+  --color-kertas-2: #f2eee4;
+  --color-kertas-3: #e8e2d4;
+
+  --color-tinta: #1b1a16;
+  --color-tinta-2: #4a473e;
+  --color-tinta-3: #7d786b;
+
+  --color-garis: #ded7c7;
+  --color-garis-2: #cbc2ad;
+
+  --color-pinus: #14453a;
+  --color-pinus-2: #1d6553;
+  --color-pinus-3: #e7efeb;
+
+  --color-oker: #a55c0c;
+  --color-oker-2: #f8ecdc;
+
+  --color-bata: #9a2f22;
+  --color-bata-2: #fae9e6;
+}
+
+/* Tekstur butir halus agar latar terasa seperti kertas, bukan bidang datar. */
+html {
+  background-color: var(--color-kertas);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-tinta);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+}
+
+/* ── Komponen ─────────────────────────────────────────────────────────── */
+
+@utility label-bidang {
+  @apply block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-3 mb-2;
+}
+
+@utility bidang {
+  @apply w-full rounded-none border border-garis-2 bg-white px-3.5 py-2.5 text-[15px]
+         text-tinta transition-colors outline-none
+         focus:border-pinus focus:ring-2 focus:ring-pinus/15
+         disabled:bg-kertas-2 disabled:text-tinta-3;
+}
+
+@utility tombol {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-[14px]
+         font-semibold tracking-tight transition-all duration-150
+         disabled:opacity-50 disabled:pointer-events-none;
+}
+
+@utility tombol-utama {
+  @apply tombol bg-pinus text-kertas hover:bg-pinus-2
+         shadow-[2px_2px_0_0_var(--color-tinta)] hover:shadow-[3px_3px_0_0_var(--color-tinta)]
+         hover:-translate-x-px hover:-translate-y-px active:translate-x-0 active:translate-y-0
+         active:shadow-[1px_1px_0_0_var(--color-tinta)];
+}
+
+@utility tombol-garis {
+  @apply tombol border border-garis-2 bg-white text-tinta hover:border-tinta hover:bg-kertas-2;
+}
+
+@utility tombol-bahaya {
+  @apply tombol border border-bata/30 bg-bata-2 text-bata hover:border-bata hover:bg-bata hover:text-white;
+}
+
+@utility kartu {
+  @apply border border-garis bg-white;
+}
+
+@utility judul-bagian {
+  @apply font-serif text-[26px] font-semibold leading-tight text-tinta;
+}
+
+/* Animasi masuk bertahap saat halaman dimuat. */
+@keyframes naik {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@utility masuk {
+  animation: naik 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}

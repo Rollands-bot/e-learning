@@ -1,0 +1,27 @@
+# Dependensi & artefak build
+node_modules/
+frontend/.svelte-kit/
+frontend/build/
+backend/bin/
+*.exe
+
+# Env & rahasia — jangan pernah dikomit
+.env
+*.env.local
+
+# Berkas unggahan pengguna
+backend/uploads/materi/*
+backend/uploads/pengumpulan/*
+!backend/uploads/materi/.gitkeep
+!backend/uploads/pengumpulan/.gitkeep
+
+# Dokumen skripsi.
+# Repositori ini publik, sehingga draf skripsi sengaja tidak diikutkan.
+*.docx
+*.pdf
+
+# OS & editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
