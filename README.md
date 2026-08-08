@@ -7,16 +7,18 @@ istilah, dan alur sistem di repositori ini mengikuti dokumen tersebut — khusus
 Tabel 4.15–4.19 (struktur tabel), Tabel 3.3 (kebutuhan fungsional), dan Tabel 3.9
 (rancangan pengujian).
 
-> `PRD.md` adalah dokumen lama dari fase awal dan **sudah tidak sesuai** dengan skripsi
-> (masih memakai username, 8 tabel, dan Bootstrap). Gunakan skripsi sebagai acuan.
+> Berkas skripsi tidak diikutkan ke repositori ini karena repositori bersifat publik.
+>
+> Versi Next.js + Supabase yang sebelumnya menempati `main` diarsipkan pada tag
+> `arsip-nextjs-supabase` dan masih dapat diakses:
+> `git checkout arsip-nextjs-supabase`
 
 ## Struktur
 
 ```
 .
-├── backend/                   # REST API (Go + Gin + GORM + PostgreSQL)
-├── frontend/                  # SvelteKit + Tailwind CSS
-└── frontend-bootstrap-lama/   # arsip front-end lama (HTML + Bootstrap), tidak dipakai
+├── backend/    # REST API (Go + Gin + GORM + PostgreSQL)
+└── frontend/   # SvelteKit + Tailwind CSS
 ```
 
 ## Status
