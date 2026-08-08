@@ -38,11 +38,18 @@
       class="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-oker opacity-15 blur-3xl"
     ></div>
 
-    <div class="relative">
-      <div class="text-[11px] font-semibold tracking-[0.28em] text-kertas/50 uppercase">
-        Universitas Insan Pembangunan Indonesia
+    <div class="relative flex items-center gap-4">
+      <img
+        src="/logo-unipi.png"
+        alt="Logo Universitas Insan Pembangunan Indonesia"
+        class="h-20 w-20 shrink-0"
+      />
+      <div>
+        <div class="text-[11px] font-semibold tracking-[0.28em] text-kertas/50 uppercase">
+          Universitas Insan Pembangunan Indonesia
+        </div>
+        <div class="mt-4 h-px w-16 bg-oker"></div>
       </div>
-      <div class="mt-6 h-px w-16 bg-oker"></div>
     </div>
 
     <div class="relative max-w-lg">

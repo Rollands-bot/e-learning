@@ -51,10 +51,17 @@
 <div class="flex min-h-screen">
   <!-- Bilah samping -->
   <aside class="hidden w-64 shrink-0 flex-col bg-pinus text-kertas md:flex">
-    <div class="border-b border-white/10 px-6 py-7">
-      <div class="font-serif text-[21px] leading-none font-semibold">E-Learning</div>
-      <div class="mt-1.5 text-[11px] font-semibold tracking-[0.2em] text-kertas/45 uppercase">
-        Unipi
+    <div class="flex items-center gap-3 border-b border-white/10 px-6 py-6">
+      <img
+        src="/logo-unipi.png"
+        alt="Logo Universitas Insan Pembangunan Indonesia"
+        class="h-11 w-11 shrink-0"
+      />
+      <div>
+        <div class="font-serif text-[21px] leading-none font-semibold">E-Learning</div>
+        <div class="mt-1.5 text-[11px] font-semibold tracking-[0.2em] text-kertas/45 uppercase">
+          Unipi
+        </div>
       </div>
     </div>
 
